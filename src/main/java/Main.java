@@ -4,9 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
         int[] a = { 3, 1, 3, 4, 5, 6 };
-        int[] b = { 3, 4, 5, 7, 8, 9, 11, 13, 17 };
+        int[] b = { 3, 4, 5, 7, 8, 9, 11, 5, 13, 17 };
+        int[] c = { 5, 3, 8, 2, 9 };
         Node<Integer> head = build_List(a);
         Node<Integer> h = build_List(b);
+        Node<Integer> l = build_List(c);
         // print_list(head);
         // print_list_recursive(head);
         // System.out.println(only_positives());
@@ -21,7 +23,9 @@ public class Main {
         // System.out.println(ex_11(h, head));
         // System.out.println(ex_1(head, h));
         // Node<Integer> hh = ex_1(head, h);
-        System.out.println(ex_2(head));
+        // System.out.println(ex_2(head));
+        // System.out.println(ex_3(l, 8));
+        System.out.println(ex_4(l));
     }
 
     public static Node<Integer> build_List(int[] a) { // ex1
@@ -270,6 +274,40 @@ public class Main {
             nodeY.setValue(tmp);
         }
         return head;
+    }
+
+    public static int ex_3(Node<Integer> l, int x) { // O(n)
+        int i = 0;
+        int first = -1;
+        int last = -1;
+        Node<Integer> l2 = l;
+        while (l2 != null) {
+            Integer val = l2.getValue();
+            if (val != null && val == x) {
+                if (first == -1)
+                    first = i;
+                last = i;
+            }
+            i++;
+            l2 = l2.getNext();
+        }
+        if (first == -1)
+            return 0;
+        return i - last + first - 1;
+    }
+
+    public static <T> boolean ex_4(Node<T> l) { // O(n²)
+        Node<T> l2 = l;
+        while (l2 != null) {
+            Node<T> l3 = l2.getNext();
+            while (l3 != null) {
+                if (Objects.equals(l2.getValue(), l3.getValue()))
+                    return false;
+                l3 = l3.getNext();
+            }
+            l2 = l2.getNext();
+        }
+        return true;
     }
 
 }
