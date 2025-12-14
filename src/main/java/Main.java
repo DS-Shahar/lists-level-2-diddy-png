@@ -276,13 +276,13 @@ public class Main {
         return head;
     }
 
-    public static int ex_3(Node<Integer> l, int x) { // O(n)
+    public static <T> int ex_3(Node<T> l, T x) { // O(n)
         int i = 0;
         int first = -1;
         int last = -1;
-        Node<Integer> l2 = l;
+        Node<T> l2 = l;
         while (l2 != null) {
-            if (l2.getValue() != null && l2.getValue() == x) {
+            if (l2.getValue() != null && Objects.equals(l2.getValue(), x)) {
                 if (first == -1)
                     first = i;
                 last = i;
