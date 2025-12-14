@@ -24,8 +24,9 @@ public class Main {
         // System.out.println(ex_1(head, h));
         // Node<Integer> hh = ex_1(head, h);
         // System.out.println(ex_2(head));
-        // System.out.println(ex_3(l, 8));
+        System.out.println(ex_3(l, 8));
         System.out.println(ex_4(l));
+        System.out.println(ex_5(h));
     }
 
     public static Node<Integer> build_List(int[] a) { // ex1
@@ -290,9 +291,10 @@ public class Main {
             i++;
             l2 = l2.getNext();
         }
+        i--;
         if (first == -1)
             return 0;
-        return i - last + first - 1;
+        return i - last + first;
     }
 
     public static <T> boolean ex_4(Node<T> l) { // O(n²)
@@ -307,6 +309,20 @@ public class Main {
             l2 = l2.getNext();
         }
         return true;
+    }
+
+    public static <T> Node<T> ex_5(Node<T> l) {
+        Node<T> l2 = new Node<T>(null);
+        Node<T> l4 = l2;
+        Node<T> l3 = l;
+        while (l3 != null) {
+            if (!contains(l2.getNext(), l3.getValue())) {
+                l4.setNext(new Node<T>(l3.getValue()));
+                l4 = l4.getNext();
+            }
+            l3 = l3.getNext();
+        }
+        return l2.getNext();
     }
 
 }
