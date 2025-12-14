@@ -282,8 +282,7 @@ public class Main {
         int last = -1;
         Node<Integer> l2 = l;
         while (l2 != null) {
-            Integer val = l2.getValue();
-            if (val != null && val == x) {
+            if (l2.getValue() != null && l2.getValue() == x) {
                 if (first == -1)
                     first = i;
                 last = i;
